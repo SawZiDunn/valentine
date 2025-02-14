@@ -1,48 +1,76 @@
-import { useState } from 'react'
-import gif from './assets/bear.gif'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useReducer, useRef, useState } from "react";
+import gif from "./assets/bear.gif";
+import "./App.css";
 
 function App() {
-  const maxX = 90;
-  const maxY = 92;
+    const containerRef = useRef(null);
+    const ansRef = useRef(null);
+    const movingBtnRef = useRef(null);
 
-  const noEventHandler = () => {
-    
-    const left = (Math.random().toFixed(2) * 100) % maxX;
-    const top = (Math.random().toFixed(2) * 100) % maxY;
+    const [maxX, setMaxX] = useState(0);
+    const [maxY, setMaxY] = useState(0);
 
-    document.querySelector('#moving-btn').style.left = left + "%";
-    document.querySelector('#moving-btn').style.top = top + "%";
+    // get container dimensions on component mount
+    useEffect(() => {
+        if (containerRef.current && movingBtnRef.current) {
+            setMaxX(
+                containerRef.current.offsetWidth -
+                    movingBtnRef.current.offsetWidth
+            );
+            setMaxY(
+                containerRef.current.offsetHeight -
+                    movingBtnRef.current.offsetHeight
+            );
+        }
+    }, []);
 
-     
-  }
+    const noEventHandler = () => {
+        // console.log(maxX, maxY);
+        const left = Math.random() * maxX;
+        const top = Math.random() * maxY;
 
-  const yesEventHandler = () => {
-    document.querySelector('#ans').style.display ='block';
-  }
+        if (movingBtnRef.current) {
+            movingBtnRef.current.style.left = `${left}px`;
+            movingBtnRef.current.style.top = `${top}px`;
+        }
+    };
 
-  return (
-    <>
-      <div className="app-container">
-          <h3>Will you be my Valentine, <span>Akyi Lay 💕</span>?</h3>
+    const yesEventHandler = () => {
+        if (ansRef.current) {
+            ansRef.current.style.display = "block";
+            document.body.style.backgroundColor = "#ffcccc"; // Cute color
+        }
+    };
 
-          <div>
-            <button className="green" onClick={yesEventHandler}>Yes</button>
-            <button id="moving-btn" className="moving-button red" onMouseOver={noEventHandler}>No</button>
-          </div>
+    return (
+        <>
+            <div className="app-container" ref={containerRef}>
+                <h3>
+                    Will you be my Valentine, <span>Akyi Lay 💕</span>?
+                </h3>
 
-          <div className="ans" id="ans">
-          <span>Yay! You’re my Valentine! Love you! ❤️🥰</span>
-          <br></br>
-          <img src={gif} style={{width: '200px', marginLeft: '100px'}}/>
+                <div>
+                    <button className="green" onClick={yesEventHandler}>
+                        Yes
+                    </button>
+                    <button
+                        ref={movingBtnRef}
+                        className="moving-button red"
+                        onMouseOver={noEventHandler}
+                        onClick={noEventHandler}
+                    >
+                        No
+                    </button>
+                </div>
+
+                <div className="ans" ref={ansRef}>
+                    <span>Yay! You’re my Valentine! Love you! ❤️🥰</span>
+
+                    <img src={gif} />
+                </div>
             </div>
-
-          
-      </div>
-     
-    </>
-  )
+        </>
+    );
 }
 
-export default App
+export default App;
