@@ -10,11 +10,17 @@
 }
 
 h3 {
-    color: rgb(128, 128, 231);
+    color: rgb(102, 102, 210);
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 button {
-    margin-right: 1em;
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
@@ -43,10 +49,9 @@ button {
 }
 
 .moving-button {
-    position: absolute;
     transition: top 0.2s, left 0.2s; /* Smooth transition */
-    /* left: %;
-    top: %; */
+    /* left: px;
+    top: px; */
 }
 
 .ans {
@@ -61,7 +66,6 @@ button {
 
 .ans img {
     width: 200px;
-
     display: block;
     margin: 0 auto;
     max-width: 100%;

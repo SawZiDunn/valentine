@@ -26,10 +26,12 @@ function App() {
 
     const noEventHandler = () => {
         // console.log(maxX, maxY);
-        const left = Math.random() * maxX;
-        const top = Math.random() * maxY;
 
         if (movingBtnRef.current) {
+            const left = Math.random() * maxX;
+            const top = Math.random() * maxY;
+
+            movingBtnRef.current.style.position = "absolute"; // Change to absolute to move inside .app-container
             movingBtnRef.current.style.left = `${left}px`;
             movingBtnRef.current.style.top = `${top}px`;
         }
@@ -45,9 +47,9 @@ function App() {
     return (
         <>
             <div className="app-container" ref={containerRef}>
-                <h3>Will you be my Valentine?</h3>
+                <h3>Will you be my Valentine 💞?</h3>
 
-                <div>
+                <div className="btn-container">
                     <button className="green" onClick={yesEventHandler}>
                         Yes
                     </button>
