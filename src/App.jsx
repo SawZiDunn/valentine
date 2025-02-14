@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import gif from './assets/bear.gif'
 import viteLogo from '/vite.svg'
 import './App.css'
 
@@ -34,7 +34,11 @@ function App() {
 
           <div className="ans" id="ans">
           <span>Yay! You’re my Valentine! Love you! ❤️🥰</span>
-          </div>
+          <br></br>
+          <img src={gif} style={{width: '200px', marginLeft: '100px'}}/>
+            </div>
+
+          
       </div>
      
     </>
