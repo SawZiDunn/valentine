@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gif from "./assets/bear.gif";
 import "./App.css";
 
@@ -45,14 +45,13 @@ function App() {
     return (
         <>
             <div className="app-container" ref={containerRef}>
-                <h3>
-                    Will you be my Valentine, <span>Akyi Lay 💕</span>?
-                </h3>
+                <h3>Will you be my Valentine?</h3>
 
                 <div>
                     <button className="green" onClick={yesEventHandler}>
                         Yes
                     </button>
+
                     <button
                         ref={movingBtnRef}
                         className="moving-button red"
